@@ -1,0 +1,96 @@
+from flask import Flask, render_template, request
+from flask_mysqldb import MySQL
+from flask_mail import Mail, Message
+
+app = Flask(__name__)
+
+# MySQL configurations
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'nsn'
+app.config['MYSQL_PASSWORD'] = 'nsn0407'
+app.config['MYSQL_DB'] = 'userdata_db'
+
+# Flask-Mail configurations
+app.config['MAIL_SERVER'] = 'smtp.example.com'  # SMTP server address
+app.config['MAIL_PORT'] = 587  # SMTP port (usually 587 for TLS)
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'your_email@example.com'  # Your email address
+app.config['MAIL_PASSWORD'] = 'your_email_password'  # Your email password
+
+mysql = MySQL(app)
+mail = Mail(app)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    if request.method == 'POST':
+        # Retrieve form data
+        date = request.form['date']
+        lead_source = request.form['lead-source']
+        lead_month = request.form['lead-month']
+        pre_enrollment_number = request.form['pre-enrollment-number']
+        about_customer = request.form['about-customer']
+        batch_details = request.form['batch-details']
+        pitching_model = request.form['pitching-model']
+        father_name = request.form['father-name']
+        mother_name = request.form['mother-name']
+        student_name = request.form['student-name']
+        student_age = request.form['student-age']
+        current_address = request.form['current-address']
+        school_name = request.form['school-name']
+        contact_number = request.form['contact-number']
+        alternative_number = request.form['alternative-number']
+        email = request.form['email']
+        course = request.form['course']
+        level = request.form['level']
+        class_type = request.form['class-type']
+        total_amount = request.form['total-amount']
+        amount_paid = request.form['amount-paid']
+        payment_mode = request.form['payment-mode']
+        emi_tenure = request.form['emi-tenure']
+        emi_per_month = request.form['emi-per-month']
+        course_duration = request.form['course-duration']
+        sales_consultant_name = request.form['sales-consultant-name']
+        department = request.form['department']
+        complementary_course = request.form['complementary-course']
+        language = request.form['language']
+        demo_done = request.form['demo-done']
+        complementary_course_details = request.form['complementary-course-details']
+
+        # Insert user data into MySQL database
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO users 
+            (date, lead_source, lead_month, pre_enrollment_number, about_customer, batch_details, 
+            pitching_model, father_name, mother_name, student_name, student_age, current_address, 
+            school_name, contact_number, alternative_number, email, course, level, class_type, 
+            total_amount, amount_paid, payment_mode, emi_tenure, emi_per_month, course_duration, 
+            sales_consultant_name, department, complementary_course, language, demo_done, complementary_course_details) 
+            VALUES 
+            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (date, lead_source, lead_month, pre_enrollment_number, about_customer, batch_details, 
+              pitching_model, father_name, mother_name, student_name, student_age, current_address, 
+              school_name, contact_number, alternative_number, email, course, level, class_type, 
+              total_amount, amount_paid, payment_mode, emi_tenure, emi_per_month, course_duration, 
+              sales_consultant_name, department, complementary_course, language, demo_done, complementary_course_details))
+        mysql.connection.commit()
+
+        # Fetch the generated ID
+        cur.execute("SELECT LAST_INSERT_ID()")
+        last_inserted_id = cur.fetchone()[0]
+
+        cur.close()
+
+        # Send email
+        msg = Message('New Lead Submission', sender='your_email@example.com', recipients=['recipient@example.com'])
+        msg.body = f"New lead submitted:\n\nStudent Name: {student_name}\nFather's Name: {father_name}\nCourse: {course}\nID: {last_inserted_id}"
+        mail.send(msg)
+
+        return 'Data submitted successfully'
+
+if __name__ == '__main__':
+    app.run(debug=True)
