@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Data</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Feedback Data</h1>
+    <button id="convertToExcel">Convert to Excel</button>
+    <table id="feedbackTable">
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Mentor Name</th>
+                <th>Student ID</th>
+                <th>Material Used</th>
+                <th>Teaching Methods</th>
+                <th>Delivery of Content</th>
+                <th>Behavior with Students</th>
+                <th>Additional Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be loaded here using JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function(){
+            // Load feedback data when the page loads
+            loadFeedbackData();
+
+            // Function to load feedback data
+            function loadFeedbackData(){
+                $.ajax({
+                    url: '/api/feedbackData',  // Endpoint to fetch feedback data
+                    type: 'GET',
+                    success: function(data){
+                        // Clear existing table rows
+                        $('#feedbackTable tbody').empty();
+
+                        // Append data to table
+                        data.forEach(function(row){
+                            $('#feedbackTable tbody').append(
+                                '<tr>' +
+                                '<td>' + row.id + '</td>' +
+                                '<td>' + row.mentor_name + '</td>' +
+                                '<td>' + row.student_id + '</td>' +
+                                '<td>' + row.material_used + '</td>' +
+                                '<td>' + row.teaching_methods + '</td>' +
+                                '<td>' + row.delivery_of_content + '</td>' +
+                                '<td>' + row.behavior_with_students + '</td>' +
+                                '<td>' + row.additional_remarks + '</td>' +
+                                '</tr>'
+                            );
+                        });
+                    }
+                });
+            }
+
+            // Convert to Excel button click event
+            $('#convertToExcel').click(function(){
+                // Send request to download Excel file
+                window.location.href = '/download_excel';
+            });
+        });
+    </script>
+</body>
+</html>
