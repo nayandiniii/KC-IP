@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Form</title>
+</head>
+<body>
+    <h1>Lead Form</h1>
+    <form action="/lead_submit" method="post">
+        <label for="representative-name">Representative Name:</label>
+        <select id="representative-name" name="representative-name" required>
+            <option value="John Doe">John Doe</option>
+            <option value="Jane Smith">Jane Smith</option>
+            <!-- Add more representative names here -->
+        </select><br><br>
+
+        <label for="mention-lead">Mention Lead:</label>
+        <input type="text" id="mention-lead" name="mention-lead" required><br><br>
+
+        <label for="contact-no">Contact Number:</label>
+        <input type="tel" id="contact-no" name="contact-no" required><br><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="state">State:</label>
+        <select id="state" name="state" required>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <!-- Add more Indian states here -->
+        </select><br><br>
+
+        <label for="type-of-lead">Type of Lead:</label>
+        <select id="type-of-lead" name="type-of-lead" required>
+            <option value="Potential">Potential</option>
+            <option value="Confirmed">Confirmed</option>
+            <!-- Add more types of leads here -->
+        </select><br><br>
+
+        <label for="additional-remarks">Additional Remarks:</label>
+        <input type="text" id="additional-remarks" name="additional-remarks"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
