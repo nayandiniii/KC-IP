@@ -1,0 +1,125 @@
+<!-- admin_panel.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('/static/images/bg1.png'); /* Replace 'background.jpg' with your image path */
+            background-size: cover;
+        }
+
+        .admin-container {
+            position: relative;
+            width: 600px;
+            height: auto;
+            background-color: rgb(255, 255, 255); /* Overlay with a box */
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 3px 3px 0 5px rgba(229, 229, 229, 0.662);
+            align-items: center;
+            padding: 20px;
+        }
+
+        .admin-form {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .admin-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .admin-form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #f15b2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .admin-form input[type="submit"]:hover {
+            background-color: #3679f4;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 250px; /* Adjust as needed */
+            height: 50px;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            width: 50px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+            background-image: url('/static/images/logout.png'); /* Replace 'logout_button.png' with your image path */
+            background-size: cover;
+            border-radius: 50%;
+        }
+
+        .menu-bar {
+            position: absolute;
+            top: 20px;
+            right: 0; /* Align to top right corner */
+            background-color: rgba(255, 255, 255, 0.8); /* White color with 80% opacity */
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logout-button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="/static/images/logo.png" alt="Logo"> <!-- Replace 'logo.png' with your logo path -->
+
+    <div class="admin-container">
+        <div class="logout-button" onclick="redirectToLogin()"></div>
+        <h2>Add User Details</h2>
+        <form class="admin-form" action="/add_user" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age" min="1" max="150"><br>
+            <label for="contact">Contact:</label><br>
+            <input type="text" id="contact" name="contact"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <label for="kcid">KC ID:</label><br>
+            <input type="text" id="kcid" name="kcid"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Add User">
+        </form>
+    </div>
+
+    <script>
+        function redirectToLogin() {
+            window.location.href = "/login"; // Replace 'login.html' with your login page path
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+        }
+
+        .menu-bar {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            margin-left: 20px;
+            width: 250px;
+            height: 50px;
+        }
+
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3f3f3f;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            text-decoration: none;
+            color: #f15b2b;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 600px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 3px 3px 0 5px rgba(229, 229, 229, 0.662);
+            align-items: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="tel"],
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #f15b2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #3679f4;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            background-image: url('/static/images/back.png');
+            background-size: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-button" onclick="redirectToForm()"></div>
+
+    <div class="menu-bar">
+        <img class="logo" src="/static/images/logo.png" alt="Logo">
+        <div class="nav-links">
+            <a href="/" target="_blank">Home</a>
+            <a href="https://www.kidschaupal.com/our-story" target="_blank">About Us</a>
+            <a href="https://www.kidschaupal.com/contact-us" target="_blank">Contact</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Feedback Form</h1>
+        <form action="/submit_feedback" method="post">
+            <label for="mentor_name">Mentor Name:</label>
+            <input type="text" id="mentor_name" name="mentor_name" required>
+            
+            <label for="student_id">Student ID:</label>
+            <input type="text" id="student_id" name="student_id" required>
+            
+            <label for="material_used">Material Used to Teach (5 stars from can be improved to very good):</label>
+            <div class="rating">
+                <select id="material_used" name="material_used" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            
+            <label for="teaching_methods">Teaching Methods (5 stars):</label>
+            <div class="rating">
+                <select id="teaching_methods" name="teaching_methods" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            
+            <label for="delivery_of_content">Delivery of Content (5 stars):</label>
+            <div class="rating">
+                <select id="delivery_of_content" name="delivery_of_content" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            
+            <label for="behavior_with_students">Behavior with Students (5 stars):</label>
+            <div class="rating">
+                <select id="behavior_with_students" name="behavior_with_students" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            
+            <label for="additional_remarks">Additional Remarks:</label>
+            <textarea id="additional_remarks" name="additional_remarks"></textarea>
+            
+            <input type="submit" value="Submit Feedback">
+        </form>
+    </div>
+    <script>
+        function redirectToForm() {
+            window.location.href = "/dashboard_student";
+        }
+    </script>
+</body>
+</html>

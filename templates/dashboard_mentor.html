@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('/static/images/bg1.png'); /* Replace 'background.jpg' with your image path */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Menu bar */
+       /* Menu bar */
+       .menu-bar {
+            position: absolute;
+            top: 20px;
+            right: 0; /* Align to top right corner */
+            background-color: rgba(255, 255, 255, 0.8); /* White color with 80% opacity */
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+/* Navigation links */
+.nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3f3f3f;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover{
+            text-decoration: none;
+            color: #f15b2b;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .dashboard-container {
+            position: relative;
+            width: 1000px;
+            height: auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Overlay with a box */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid rgb(255, 255, 255);
+            background-color: white;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+            border: 1px solid rgb(255, 255, 255);
+        }
+
+        td:first-child {
+            background-color: #3679f4;
+            color: white;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 250px; /* Adjust as needed */
+            height: 50px;
+        }
+        th{
+            padding: 8px;
+            border: 1px solid rgb(255, 255, 255);
+        }
+
+        td{
+            padding: 8px;
+            border: 1px solid rgb(0, 0, 0);
+        } 
+
+        h1{
+            color: #f15b2b;
+        }
+        .logout-button {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            cursor: pointer;
+            width: 50px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+            background-image: url('/static/images/logout.png'); /* Replace 'logout_button.png' with your image path */
+            background-size: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="/static/images/logo.png" alt="Logo" > <!-- Replace 'logo.png' with your logo path -->
+
+    <!-- Menu bar -->
+<div class="menu-bar">
+    <!-- Logo -->
+    <div class="logout-button" onclick="redirectToLogin()"></div>
+
+    <!-- Navigation links -->
+    <div class="nav-links">
+        <a href="/" target="_blank">Home</a>
+        <a href="https://www.kidschaupal.com/our-story" target="_blank">About Us</a>
+        <a href="https://www.kidschaupal.com/contact-us" target="_blank">Contact</a>
+    </div>
+</div>
+    <div class="dashboard-container">
+        <h1>Mentor Dashboard</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Birthdate</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>State</th>
+                    <th>Education</th>
+                    <th>Highest Qualification</th>
+                    <th>Certifications</th>
+                    <th>Course</th>
+                    <th>Level</th>
+                    <th>Expected Payment</th>
+                    <th>Available Slots</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ mentor_details.mentor_name }}</td>
+                    <td>{{ mentor_details.birthdate }}</td>
+                    <td>{{ mentor_details.email }}</td>
+                    <td>{{ mentor_details.address }}</td>
+                    <td>{{ mentor_details.state }}</td>
+                    <td>{{ mentor_details.education }}</td>
+                    <td>{{ mentor_details.highest_qualification }}</td>
+                    <td>{{ mentor_details.certifications }}</td>
+                    <td>{{ mentor_details.course }}</td>
+                    <td>{{ mentor_details.level }}</td>
+                    <td>{{ mentor_details.expected_payment }}</td>
+                    <td>{{ mentor_details.available_slots }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br><br><br>
+
+        <table>
+            <tr>
+                <th>PDF</th>
+                <th>Assignment Name</th>
+                <th>Mentor KCID</th>
+                <th>Action</th>
+            </tr>
+            {% for assignment in assignment_details %}
+            <tr>
+                <td><a href="{{ url_for('static', filename=assignment.pdf_location) }}" target="_blank">Open File</a></td>
+                <td>{{ assignment.name }}</td>
+                <td>{{ assignment.kcid }}</td>
+                <td>
+                    <form action="/delete_assignment" method="post">
+                        <input type="hidden" name="assignment_id" value="{{ assignment.kcid }}">
+                        <input type="hidden" name="assignment_loc" value="{{ assignment.name }}">
+                        <button type="submit">Done</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script>
+        function redirectToLogin() {
+            window.location.href = "/login"; // Replace 'login.html' with your login page path
+        }
+    </script>
+</body>
+</html>

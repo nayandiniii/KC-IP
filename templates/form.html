@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <style>
+        /* Body styles */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden; /* Hide overflow */
+        }
+        
+        /* Menu bar */
+        .menu-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* White color with 80% opacity */
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            margin-left: 20px;
+            width: 250px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+        }
+
+        /* Navigation links */
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3f3f3f;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover{
+            text-decoration: none;
+            color: #f15b2b;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        /* Background video */
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Place video behind other elements */
+        }
+
+        /* Overlay color */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(49, 132, 248, 0.311); /* Light blue color with 50% opacity */
+            z-index: -1; /* Place overlay behind other elements */
+        }
+
+        /* Container for buttons */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 600px; /* Adjust as needed */
+            margin: 0 auto; /* Center container */
+            z-index: 1; /* Ensure buttons are above overlay */
+        }
+
+        /* Button styles */
+        form {
+            margin: 10px; /* Adjust spacing between buttons */
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #3679f4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #f15b2b;
+        }
+        .logout-button {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            cursor: pointer;
+            width: 50px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+            background-image: url('/static/images/logout.png'); /* Replace 'logout_button.png' with your image path */
+            background-size: cover;
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="logout-button" onclick="redirectToLogin()"></div>
+
+    <!-- Background overlay -->
+    <div class="overlay"></div>
+
+    <!-- Menu bar -->
+    <div class="menu-bar">
+        <!-- Logo -->
+        <img class="logo" src="/static/images/logo.png" alt="Logo" > <!-- Replace 'logo.png' with your logo path -->
+        
+        <!-- Navigation links -->
+        <div class="nav-links">
+            <a href="/" target="_blank">Home</a>
+            <a href="https://www.kidschaupal.com/our-story" target="_blank">About Us</a>
+            <a href="https://www.kidschaupal.com/contact-us" target="_blank">Contact</a>
+        </div>
+    </div>
+    <!-- Background video -->
+    <video autoplay muted loop>
+        <source src="static/images/form_bg.mp4" type="video/mp4"> <!-- Replace 'background_video.mp4' with your video file path -->
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay color -->
+    <div class="overlay"></div>
+
+    <!-- Buttons container -->
+    <div class="buttons-container">
+        <form action="/invoice_form" method="get">
+            <button type="submit">Invoice Form</button>
+        </form>
+        <form action="/mentor_details" method="get">
+            <button type="submit">Mentor Details Form</button>
+        </form>
+        <form action="/leads_form" method="get">
+            <button type="submit">Leads Form</button>
+        </form>
+        <form action="/data_analysis" method="get">
+            <button type="submit">Data Analysis</button>
+        </form>
+        <form action="/feedback_data" method="get">
+            <button type="submit">Mentor Feedback</button>
+        </form>
+    </div>
+    <script>
+        function redirectToLogin() {
+            window.location.href = "/login"; // Replace 'login.html' with your login page path
+        }
+    </script>
+</body>
+</html>

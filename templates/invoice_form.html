@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+        }
+
+        /* Menu bar */
+        .menu-bar {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            margin-left: 20px;
+            width: 250px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+        }
+
+        /* Navigation links */
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3f3f3f;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            text-decoration: none;
+            color: #f15b2b;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        /* Container styles */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            box-shadow: 3px 3px 0 5px rgba(229, 229, 229, 0.662);
+            padding: 20px;
+            margin-top: 20px; /* Add margin to separate from menu bar */
+        }
+
+        /* Form styles */
+        form {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            display: block;
+        }
+
+        form input[type="text"],
+        form input[type="number"],
+        form input[type="email"],
+        form input[type="tel"],
+        form input[type="date"],
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        form input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #f15b2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #3679f4;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            cursor: pointer;
+            width: 50px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+            background-image: url('/static/images/back.png'); /* Replace 'logout_button.png' with your image path */
+            background-size: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-button" onclick="redirectToForm()"></div>
+
+    <!-- Menu bar -->
+    <div class="menu-bar">
+        <!-- Logo -->
+        <img class="logo" src="/static/images/logo.png" alt="Logo">
+        <!-- Navigation links -->
+        <div class="nav-links">
+            <a href="/" target="_blank">Home</a>
+            <a href="https://www.kidschaupal.com/our-story" target="_blank">About Us</a>
+            <a href="https://www.kidschaupal.com/contact-us" target="_blank">Contact</a>
+        </div>
+    </div>
+
+    <div class="container">
+    <h1>Lead Form</h1>
+    <form action="/invoice_form" method="post" enctype="multipart/form-data">
+        <label for="iamge">Upload Picture:</label>
+        <input type="file" name="image"> <!-- Corrected name attribute --><br><br>
+        <label for="date">Date:</label>
+<input type="date" id="date" name="date" required><br><br>
+
+
+
+        <label for="lead-source">Lead Source:</label>
+        <select id="lead-source" name="lead-source" required>
+            <option value="campaign">Campaign</option>
+            <option value="mentor-reference">Mentor Reference</option>
+            <option value="reference">Reference</option>
+            <option value="portfolio">Portfolio</option>
+            <option value="organic">Organic</option>
+            <option value="upsell">Upsell</option>
+            <option value="fb-lead">FB Lead</option>
+            <option value="sulekha">Sulekha</option>
+            <option value="cold-lead">Cold Lead</option>
+            <option value="jd">JD</option>
+            <option value="portfolio-reactivates-client">Portfolio (Reactivates Client)</option>
+        </select><br><br>
+
+        <label for="lead-month">Lead Month:</label>
+        <select id="lead-month" name="lead-month" required>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select><br><br>
+
+        <label for="pre-enrollment-number">Pre Enrollment Number:</label>
+        <input type="text" id="pre-enrollment-number" name="pre-enrollment-number"><br><br>
+
+        <label for="about-customer">About Customer:</label><br>
+<select id="about-customer" name="about-customer" required>
+    <option value="new">New Customer</option>
+    <option value="existing">Existing Customer</option>
+</select><br><br>
+
+
+<label for="batch-details">Batch Details:</label><br>
+<select id="batch-details" name="batch-details" required>
+    <option value="new">New Batch</option>
+    <option value="existing">Existing Batch</option>
+    <option value="discussion">Under Discussion</option>
+</select><br><br>
+<label for="pitching-model">Pitching Model:</label><br>
+<select id="pitching-model" name="pitching-model" required>
+    <option value="subscription">Subscription</option>
+    <option value="standard">Standard</option>
+</select><br><br>
+
+
+        <label for="father-name">Father's Name:</label>
+        <input type="text" id="father-name" name="father-name" required><br><br>
+
+        <label for="mother-name">Mother's Name:</label>
+        <input type="text" id="mother-name" name="mother-name"><br><br>
+
+        <label for="student-name">Student's Name:</label>
+        <input type="text" id="student-name" name="student-name" required><br><br>
+
+        <label for="student-age">Student's Age:</label>
+        <input type="number" id="student-age" name="student-age" required><br><br>
+
+        <label for="current-address">Current Address:</label>
+        <input type="text" id="current-address" name="current-address" required><br><br>
+
+        <label for="state">State: </label>
+<select id="state" name="state">
+            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Ladakh">Ladakh</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+        </select><br><br>
+        
+
+        <label for="school-name">School Name:</label>
+        <input type="text" id="school-name" name="school-name" required><br><br>
+
+        <label for="contact-number">Contact Number (Primary):</label>
+        <input type="tel" id="contact-number" name="contact-number" required><br><br>
+
+        <label for="alternative-number">Contact Number (Alternative):</label>
+        <input type="tel" id="alternative-number" name="alternative-number"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="course">Course:</label>
+<select id="course" name="course" required>
+    <option value="spoken-english">Spoken English</option>
+    <option value="abacus">Abacus</option>
+    <option value="acrylic-painting">Acrylic Painting</option>
+    <option value="bharatnatyam">Bharatnatyam</option>
+    <option value="bod">BOD</option>
+    <option value="calligraphy">Calligraphy</option>
+    <option value="chess">Chess</option>
+    <option value="coding">Coding</option>
+    <option value="eng-grammar">Eng Grammar</option>
+    <option value="eng-multi-course">Eng Multi Course</option>
+    <option value="eng-reading">Eng Reading</option>
+    <option value="eng-subscription">Eng Subscription</option>
+    <option value="flute">Flute</option>
+    <option value="french">French</option>
+    <option value="german">German</option>
+    <option value="handwriting-improv-eng">Handwriting Improv(Eng)</option>
+    <option value="handwriting-improv-hindi">Handwriting Improv(Hindi)</option>
+    <option value="hindi-grammar">Hindi Grammar</option>
+    <option value="hindi-multi-course">Hindi Multi Course</option>
+    <option value="keyboard">Keyboard</option>
+    <option value="mandala">Mandala</option>
+    <option value="moa">MOA</option>
+    <option value="oil-pastel">Oil Pastel</option>
+    <option value="pencil-sketching">Pencil Sketching</option>
+    <option value="phonics">Phonics</option>
+    <option value="piano">Piano</option>
+    <option value="public-speaking">Public Speaking</option>
+    <option value="rubiks-cube">Rubik's Cube</option>
+    <option value="theatre">Theatre</option>
+    <option value="vm">VM</option>
+    <option value="watercolour-painting">Watercolour Painting</option>
+    <option value="western-dance">Western Dance</option>
+    <option value="western-vocals">Western Vocals</option>
+</select><br><br>
+
+
+        <label for="level">Level:</label>
+        <input type="text" id="level" name="level" required><br><br>
+
+        <label for="class-type">Class Type:</label><br>
+        <select id="class-type" name="class-type" required>
+            <option value="group">Group</option>
+            <option value="one-to-one">1:1</option>
+            <option value="one-to-two">1:2</option>
+            <option value="one-to-three">1:3</option>
+        </select><br><br>
+        
+
+        <label for="total-amount">Total Amount:</label>
+        <input type="number" id="total-amount" name="total-amount" required><br><br>
+
+        <label for="amount-paid">Amount Paid:</label>
+        <input type="number" id="amount-paid" name="amount-paid" required><br><br>
+
+        <label for="payment-mode">Payment Mode:</label><br>
+<select id="payment-mode" name="payment-mode" required>
+    <option value="one-time">One Time</option>
+    <option value="zero-cost-emi">Zero Cost EMI</option>
+</select><br><br>
+
+        <label for="zero-cost-emi">Zero Cost EMI</label><br><br>
+
+        <label for="emi-tenure">EMI Tenure (in months):</label>
+        <select id="emi-tenure" name="emi-tenure" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+       
+            <!-- Add more options here -->
+        </select><br><br>
+
+        <label for="emi-per-month">EMI Per Month:</label>
+        <input type="number" id="emi-per-month" name="emi-per-month" required><br><br>
+
+        <label for="course-duration">Duration of Course:</label>
+        <input type="text" id="course-duration" name="course-duration" required><br><br>
+
+        <label for="sales-consultant-name">Sales Consultant Name:</label><br>
+        <select id="sales-consultant-name" name="sales-consultant-name" required>
+            <option value="Aayush Mishra">Aayush Mishra</option>
+            <option value="Aliya Samreen Khan">Aliya Samreen Khan</option>
+            <option value="Anirudh">Anirudh</option>
+            <option value="Anjali">Anjali</option>
+            <option value="Fizza and Arjun">Fizza and Arjun</option>
+            <option value="Fizza Fatima">Fizza Fatima</option>
+            <option value="Gautam">Gautam</option>
+            <option value="Gyandeep Moral">Gyandeep Moral</option>
+            <option value="Latika Malhotra">Latika Malhotra</option>
+            <option value="Lovely">Lovely</option>
+            <option value="Mariyyam">Mariyyam</option>
+            <option value="Mayank Rathi">Mayank Rathi</option>
+            <option value="Meenu Gour">Meenu Gour</option>
+            <option value="Megha N">Megha N</option>
+            <option value="Neha Sharma">Neha Sharma</option>
+            <option value="Nikita Ramsisariya">Nikita Ramsisariya</option>
+            <option value="Nimra weston">Nimra weston</option>
+            <option value="Prachi">Prachi</option>
+            <option value="Prachi Bajaj">Prachi Bajaj</option>
+            <option value="Prastuti agarwal">Prastuti agarwal</option>
+            <option value="Preeti">Preeti</option>
+            <option value="Priyanka Dutta">Priyanka Dutta</option>
+            <option value="Pulkit">Pulkit</option>
+            <option value="Raju Rajpurohit">Raju Rajpurohit</option>
+            <option value="Saima">Saima</option>
+            <option value="SARATH KUMAR">SARATH KUMAR</option>
+            <option value="Shashank raj">Shashank raj</option>
+            <option value="Shikha Khatri">Shikha Khatri</option>
+            <option value="Shilpa Swami">Shilpa Swami</option>
+            <option value="Shreya A">Shreya A</option>
+            <option value="Shreya awasthi">Shreya awasthi</option>
+            <option value="Shreya Goel">Shreya Goel</option>
+            <option value="Shubham Singh">Shubham Singh</option>
+            <option value="Shusmita">Shusmita</option>
+            <option value="Simran Varshney">Simran Varshney</option>
+            <option value="Sonal">Sonal</option>
+            <option value="Sushma">Sushma</option>
+            <option value="Sushmita Poddar">Sushmita Poddar</option>
+            <option value="Sushmita Poddar ">Sushmita Poddar</option>
+            <option value="Sushmita Saini">Sushmita Saini</option>
+            <option value="Tania K">Tania K</option>
+            <option value="Taniya">Taniya</option>
+            <option value="Taniya Das">Taniya Das</option>
+            <option value="Tanya Narang">Tanya Narang</option>
+            <option value="Trishita">Trishita</option>
+            <option value="Vaibhav">Vaibhav</option>
+            <option value="Vaishali">Vaishali</option>
+            <option value="Veeshal">Veeshal</option>
+            <option value="Vishal">Vishal</option>
+            <option value="Yusra">Yusra</option>
+            <option value="Zeeshan Ahmad">Zeeshan Ahmad</option>
+        </select><br><br>
+        
+
+<label for="department">Department:</label><br>
+<select id="department" name="department" required>
+    <option value="sales">Sales</option>
+    <option value="demo">Demo</option>
+    <option value="customer-support">Customer Support</option>
+    <option value="collection">Collection</option>
+    <option value="product">Product</option>
+    <option value="other">Other</option>
+</select><br><br>
+
+
+<label for="complementary-course">Complementary Course:</label><br>
+<select id="complementary-course" name="complementary-course" required>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+</select><br><br>
+
+<label for="language">Language:</label><br>
+<select id="language" name="language" required>
+    <option value="hindi">Hindi</option>
+    <option value="english">English</option>
+    <option value="both">Both</option>
+</select><br><br>
+
+<label for="demo-done">Demo Done:</label><br>
+<select id="demo-done" name="demo-done" required>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+</select><br><br>
+
+
+        <label for="complementary-course-details">Complementary Course Details:</label>
+        <input type="text" id="complementary-course-details" name="complementary-course-details"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>function redirectToForm() {
+        window.location.href = "/form"; // Replace 'login.html' with your login page path
+    }</script>
+</body>
+</html>
+ 

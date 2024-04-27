@@ -1,0 +1,141 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('/static/images/bg1.png'); /* Replace 'background.jpg' with your image path */
+            background-size: cover;
+        }
+
+        .login-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background-color: rgb(255, 255, 255); /* Overlay with a box */
+            border-radius: 20px;
+            display: flex;
+            box-shadow: 3px 3px 0 5px  rgba(229, 229, 229, 0.662);
+            align-items: center;
+        }
+
+        .menu-bar {
+            position: absolute;
+            top: 20px;
+            right: 0; /* Align to top right corner */
+            background-color: rgba(255, 255, 255, 0.8); /* White color with 80% opacity */
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 250px; /* Adjust as needed */
+            height: 50px;
+        }
+
+        .login-form {
+            margin-left: 50px; /* Adjust as needed */
+        }
+
+        .login-image {
+            position: absolute;
+            top: 0;
+            margin-left: -50px;
+            right: 0;
+            width: 200px; /* Adjust as needed */
+            height: 100%;
+            background-image: url('/static/images/login_side.jpg'); /* Replace 'image.jpg' with your image path */
+            background-size: cover;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .login-form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #f15b2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* Navigation links */
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3f3f3f;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover{
+            text-decoration: none;
+            color: #f15b2b;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="/" method="get">
+        <img class="logo" src="/static/images/logo.png" alt="Logo"></form><!-- Menu bar -->
+<div class="menu-bar">
+    <!-- Logo -->
+    
+    <!-- Navigation links -->
+    <div class="nav-links">
+        <a href="/" target="_blank">Home</a>
+        <a href="https://www.kidschaupal.com/our-story" target="_blank">About Us</a>
+        <a href="https://www.kidschaupal.com/contact-us" target="_blank">Contact</a>
+    </div>
+</div>
+    <div class="login-container">
+        
+        <div class="login-form">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <label for="email">Email:</label><br>
+                <input type="text" id="email" name="email"><br>
+                <label for="kc_id">KC ID:</label><br>
+                <input type="text" id="kc_id" name="kc_id"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br><br>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div class="login-image"></div>
+    </div>
+</body>
+</html>

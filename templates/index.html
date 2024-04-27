@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <style>
+        /* Body styles */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('/static/images/studying_child.jpg'); 
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Background overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(49, 132, 248, 0.311); /* Light blue color with 50% opacity */
+        }
+
+        /* Menu bar */
+        .menu-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* White color with 80% opacity */
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            margin-left: 20px;
+            width: 250px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+        }
+
+        /* Navigation links */
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3f3f3f;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover{
+            text-decoration: none;
+            color: #f15b2b;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+       /* Start button */
+.start-button {
+    position: absolute;
+    top: 50%;
+    left: 50px; /* Adjust as needed */
+    transform: translateY(-50%);
+    padding: 15px 30px;
+    font-size: 24px;
+    background-color: #3679f4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+        .start-button:hover {
+            background-color: #f15b2b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background overlay -->
+    <div class="overlay"></div>
+
+    <!-- Menu bar -->
+    <div class="menu-bar">
+        <!-- Logo -->
+        <img class="logo" src="/static/images/logo.png" alt="Logo" > <!-- Replace 'logo.png' with your logo path -->
+        
+        <!-- Navigation links -->
+        <div class="nav-links">
+            <a href="https://www.kidschaupal.com/" target="_blank">Home</a>
+            <a href="https://www.kidschaupal.com/our-story" target="_blank">About Us</a>
+            <a href="https://www.kidschaupal.com/contact-us" target="_blank">Contact</a>
+        </div>
+    </div>
+
+    <!-- Start button -->
+    <button class="start-button" onclick="redirectToLogin()">Welcome to KidsChaupal !</button>
+
+    <script>
+        function redirectToLogin() {
+            window.location.href = "/login";
+        }
+    </script>
+</body>
+</html>

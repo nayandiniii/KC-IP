@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+        }
+
+        .details {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        #img1 {
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #3498db; /* Blue border */
+            border-radius: 50%; /* Circle shape */
+        }
+
+        .details p {
+            margin: 5px 0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .form-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .form-buttons button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .form-buttons button:last-child {
+            margin-right: 0;
+        }
+        h1{
+            color: #f15b2b;
+        }
+
+         /* Menu bar */
+         .menu-bar {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            margin-left: 20px;
+            width: 250px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+        }
+
+        /* Navigation links */
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3f3f3f;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            text-decoration: none;
+            color: #f15b2b;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            cursor: pointer;
+            width: 50px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+            background-image: url('/static/images/logout.png'); /* Replace 'logout_button.png' with your image path */
+            background-size: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-button" onclick="redirectToForm()"></div>
+
+    <!-- Menu bar -->
+    <div class="menu-bar">
+        <!-- Logo -->
+        <form action="/" method="get">
+        <img class="logo" src="/static/images/logo.png" alt="Logo"></form>
+        <!-- Navigation links -->
+        <div class="nav-links">
+            <a href="/" target="_blank">Home</a>
+            <a href="https://www.kidschaupal.com/our-story" target="_blank">About Us</a>
+            <a href="https://www.kidschaupal.com/contact-us" target="_blank">Contact</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome {{ invoice_details.student_name }}</h1>
+        <div class="container">
+            <div class="details">
+                <img src="static\{{ invoice_details.image_location }}" alt="Invoice Image" height="200px" width="200px" id="img1">
+                <p><strong>Student's Name:</strong> {{ invoice_details.student_name }}</p>
+                <p><strong>Student's Age:</strong> {{ invoice_details.student_age }}</p>
+                <p><strong>Father's Name:</strong> {{ invoice_details.father_name }}</p>
+                <p><strong>Mother's Name:</strong> {{ invoice_details.mother_name }}</p>
+                <p><strong>Current Address:</strong> {{ invoice_details.current_address }}</p>
+                <p><strong>Contact Number (Primary):</strong> {{ invoice_details.contact_number }}</p>
+                </div>
+            <div class="details">
+                <p><strong>Email:</strong> {{ invoice_details.email }}</p>
+            <p><strong>Course:</strong> {{ invoice_details.course }}</p>
+            <p><strong>Level:</strong> {{ invoice_details.level }}</p>
+            <p><strong>Class Type:</strong> {{ invoice_details.class_type }}</p>
+            <p><strong>Total Amount:</strong> {{ invoice_details.total_amount }}</p>
+            <!-- Add more invoice details here -->
+            </div>
+            </div>
+        <div class="form-buttons">
+            <form action="/feedback" method="get">
+                <button type="submit">Feedback Form</button>
+            </form><br><br>
+
+            <!-- Form to upload PDF and assign mentor -->
+            <form action="/dashboard_student" method="post" enctype="multipart/form-data">
+                <input type="file" name="pdf_file"><br><br>
+                <input type="text" name="mentor_name" placeholder="Mentor Name"><br><br>
+                <input type="text" name="mentor_id" placeholder="Mentor ID"><br><br>
+                <button type="submit">Assign Mentor</button>
+            </form><br><br>
+
+            <!-- Button to download mentor list -->
+            <form action="/download_mentor_list" method="post">
+                <button type="submit">Download Mentor List</button>
+            </form>
+        </div>
+    </div>
+    <script>function redirectToForm() {
+        window.location.href = "/login"; // Replace 'login.html' with your login page path
+    }</script>
+</body>
+</html>
